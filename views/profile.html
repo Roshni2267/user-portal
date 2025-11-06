@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Your Profile</title>
+  <link rel="stylesheet" href="/public/style.css">
+  <script src="/public/script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Profile Details</h2>
+    <form action="/profile" method="POST">
+      <label>First Name</label>
+      <input type="text" name="first_name" placeholder="First name" required>
+      <label>Last Name</label>
+      <input type="text" name="last_name" placeholder="Last name" required>
+      <label>Phone Number</label>
+      <input type="text" name="phone" placeholder="Phone" required>
+      <label>Email</label>
+      <input type="email" name="email" placeholder="Email" required>
+      <label>Address</label>
+      <textarea name="address" rows="3" placeholder="Address" required></textarea>
+      <button type="submit">Save Details</button>
+    </form>
+    <div class="text-center">
+      <a class="link" href="/logout">Logout</a>
+    </div>
+  </div>
+</body>
+</html>

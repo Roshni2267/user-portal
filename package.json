@@ -1,0 +1,21 @@
+{
+  "name": "user-portal",
+  "version": "1.0.0",
+  "description": "Signup, login, profile details, admin dashboard, weekly email reminder",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.1",
+    "nodemailer": "^6.9.13",
+    "node-cron": "^3.0.3",
+    "sqlite3": "^5.1.7",
+    "json2csv": "^5.0.7"
+
+  }
+}
+
