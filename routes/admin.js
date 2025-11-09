@@ -79,3 +79,16 @@ router.get('/admin/export', requireAdmin, (req, res) => {
 });
 
 module.exports = router;
+
+
+router.delete('/admin/delete/:id', requireAdmin, (req, res) => {
+  const db = req.db;
+  const userId = req.params.id;
+  db.run('DELETE FROM profiles WHERE user_id = ?', [userId], function(err) {
+    if (err) return res.status(500).send('Error deleting profile');
+    db.run('DELETE FROM users WHERE id = ?', [userId], function(err2){
+      if (err2) return res.status(500).send('Error deleting user');
+      return res.status(200).send('User deleted successfully');
+    });
+  });
+});

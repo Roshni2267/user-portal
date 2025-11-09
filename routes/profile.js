@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const nodemailer = require('nodemailer');
 
 const router = express.Router();
 
@@ -38,6 +39,18 @@ router.post('/profile', requireLogin, (req, res) => {
             console.error(err2.message);
             return res.send('Error updating profile.');
           }
+          // Send welcome email
+          const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS }
+          });
+          transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Welcome!',
+            text: `Hey ${first_name}, thanks for signing up! Your details have been saved successfully.`
+          });
+
           return res.redirect('/profile?saved=1');
         }
       );
@@ -51,6 +64,18 @@ router.post('/profile', requireLogin, (req, res) => {
             console.error(err2.message);
             return res.send('Error saving profile.');
           }
+          // Send welcome email
+          const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS }
+          });
+          transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Welcome!',
+            text: `Hey ${first_name}, thanks for signing up! Your details have been saved successfully.`
+          });
+
           return res.redirect('/profile?saved=1');
         }
       );

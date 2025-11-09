@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${row.email || ''}</td>
             <td>${row.address || ''}</td>
             <td>${row.created_at || ''}</td>
+          `
+            <td><button onclick="deleteUser(${row.user_id})" style="background:#e53935;color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;">Delete</button></td>
           `;
           adminTable.appendChild(tr);
         });
@@ -31,3 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 });
+
+
+function deleteUser(id) {
+  if (confirm("Are you sure you want to delete this user?")) {
+    fetch(`/admin/delete/${id}`, { method: 'DELETE' })
+      .then(() => location.reload())
+      .catch(err => console.error(err));
+  }
+}
